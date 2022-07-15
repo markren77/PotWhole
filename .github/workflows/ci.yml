@@ -50,6 +50,8 @@ jobs:
 
       - name: Run Unit Tests
         run: ./gradlew test
+        env:
+          MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
 
       - name: Upload Unit Test Report
         uses: actions/upload-artifact@v2
