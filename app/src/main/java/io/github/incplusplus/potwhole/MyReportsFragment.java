@@ -6,8 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
-import com.google.firebase.auth.FirebaseAuth;
-
 /**
  * A simple {@link Fragment} subclass. Use the {@link MyReportsFragment#newInstance} factory method
  * to create an instance of this fragment.

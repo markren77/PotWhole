@@ -9,13 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 
 /**
@@ -30,12 +26,10 @@ public class MyAccountFragment extends Fragment {
 
     private TextView createAccount;
 
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -102,24 +96,23 @@ public class MyAccountFragment extends Fragment {
 
             logInButton.setOnClickListener(v -> userLogin());
 
-            createAccount.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), RegisterAccountPage.class);
-                startActivity(intent);
-            });
+            createAccount.setOnClickListener(
+                    v -> {
+                        Intent intent = new Intent(getActivity(), RegisterAccountPage.class);
+                        startActivity(intent);
+                    });
 
         } else {
             Button signOutButton = getView().findViewById(R.id.sign_out_button);
 
-            signOutButton.setOnClickListener(v -> {
+            signOutButton.setOnClickListener(
+                    v -> {
+                        mAuth.signOut();
 
-                mAuth.signOut();
-
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-            });
-
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        startActivity(intent);
+                    });
         }
-
     }
 
     private void userLogin() {
@@ -144,13 +137,15 @@ public class MyAccountFragment extends Fragment {
             return;
         }
 
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                //redirect
-                System.out.println("User is Signed in");
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(
+                        task -> {
+                            if (task.isSuccessful()) {
+                                // redirect
+                                System.out.println("User is Signed in");
+                                Intent intent = new Intent(getActivity(), MainActivity.class);
+                                startActivity(intent);
+                            }
+                        });
     }
 }
